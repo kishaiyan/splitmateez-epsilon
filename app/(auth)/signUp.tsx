@@ -98,7 +98,7 @@ const Signup = () => {
           </View>
           <View className='mt-5 h-[5%] items-center justify-center flex-row'>
             <Text className='text-white mr-2'>Have an account already?</Text>
-            <Link href="/signIn" className='text-secondary text-md'>Sign In</Link>
+            <Link href="/signin" className='text-secondary text-md'>Sign In</Link>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

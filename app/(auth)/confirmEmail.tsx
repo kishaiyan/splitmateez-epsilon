@@ -15,7 +15,7 @@ const ConfirmEmail = () => {
   const handleSignUpConfirmation = async ({ username, confirmationCode }: ConfirmSignUpInput) => {
     try {
       const { isSignUpComplete, nextStep } = await confirmSignUp({ username, confirmationCode });
-      router.push("/signIn")
+      router.push("/signin")
     } catch (error) {
       console.log('Error confirming sign up:', error);
     }
