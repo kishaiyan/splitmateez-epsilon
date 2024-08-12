@@ -2,7 +2,7 @@
 
 # This is a Repo for Mobile and Wireless System 2024 for the project Splitmateez team epsilon
 
-# Welcome to your Expo app 👋
+# Welcome to Splitmate app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
