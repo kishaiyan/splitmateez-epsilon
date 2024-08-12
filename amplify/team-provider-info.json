@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-splitmate-staging-1c419-authRole",
+      "UnauthRoleArn": "arn:aws:iam::010526281591:role/amplify-splitmate-staging-1c419-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::010526281591:role/amplify-splitmate-staging-1c419-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-splitmate-staging-1c419-deployment",
+      "UnauthRoleName": "amplify-splitmate-staging-1c419-unauthRole",
+      "StackName": "amplify-splitmate-staging-1c419",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:010526281591:stack/amplify-splitmate-staging-1c419/a9d36450-5861-11ef-a43a-02ea68984e57",
+      "AmplifyAppId": "d1ybibwevqi969"
+    },
+    "categories": {
+      "auth": {
+        "splitmate": {}
+      }
+    }
+  }
+}

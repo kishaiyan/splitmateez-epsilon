@@ -1,0 +1,17 @@
+{
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "splitmate",
+  "version": "3.1",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react-native",
+    "config": {
+      "SourceDir": "./",
+      "DistributionDir": "distribution",
+      "BuildCommand": "npm run-scripts build",
+      "StartCommand": "npm run-scripts start"
+    }
+  }
+}

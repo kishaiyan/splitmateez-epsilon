@@ -2,10 +2,12 @@ import Button from "../components/customButton";
 import React from 'react';
 import { Text,View,Image,StyleSheet} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Redirect,router } from "expo-router";
+import { router } from "expo-router";
 import { Link } from "expo-router";
+import { Amplify } from "aws-amplify";
+import awsconfig from "./aws-exports";
 
-
+Amplify.configure(awsconfig);
 
 
 export default function app(){
@@ -31,7 +33,7 @@ export default function app(){
       <View className="absolute bg-black/80  items-center justify-center" style={{width:'100%', height:'30%',bottom:"7%",borderTopLeftRadius:15,borderTopRightRadius:15}} >
         <Button 
         title="Get Started !"
-        handlePress={()=>router.push('/signUp')}
+        handlePress={()=>router.push('/signup')}
         containerStyle="w-[70%] min-h-[62px]"
         textStyle="text-white"
         />

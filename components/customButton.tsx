@@ -15,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   containerStyle = '',
   textStyle = '',
   isLoading = false,
+  onPress,
   ...props
 }) => {
   return (
@@ -24,6 +25,7 @@ const Button: React.FC<ButtonProps> = ({
       onPress={handlePress}
       disabled={isLoading}
       {...props}
+      onPressIn={onPress}
     >
       <Text className={`text-center font-bold text-lg text-white ${textStyle}`}>{title}</Text>
       </TouchableOpacity>
