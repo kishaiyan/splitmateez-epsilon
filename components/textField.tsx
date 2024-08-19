@@ -2,7 +2,7 @@ import { View, Text, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpa
 import { MaterialIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 
-const TextField = ({ label,placeholder,value,handlechange,keyboardtype }) => {
+const TextField = ({ label,placeholder,value,handlechange,keyboardtype,error }) => {
   
   const [showpassword,setShowPassword]=useState(false);
 
@@ -10,7 +10,9 @@ const TextField = ({ label,placeholder,value,handlechange,keyboardtype }) => {
     <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
       <View className='space-y-2 mb-3'>
       {label && <Text className='text-white mb-2'>{label}</Text>}
-      <View className="border flex-row w-[300px] h-[50px] px-2 bg-fieldfill rounded-lg justify-between focus:border-secondary">
+      <View className={`border flex-row w-[300px] h-[50px] px-2 bg-fieldfill rounded-lg justify-between focus:border-secondary `}>
+       
+        
         <TextInput
           className={`text-white ${label=== "PASSWORD" ? 'w-[85%]':'w-full' }`}
           onChangeText={handlechange}
@@ -28,6 +30,7 @@ const TextField = ({ label,placeholder,value,handlechange,keyboardtype }) => {
           )
         }
         </View>
+        {error && <Text className="text-red-500 mt-1">{error}</Text>}
       </View>
     </TouchableWithoutFeedback>
   );

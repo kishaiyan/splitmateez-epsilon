@@ -30,7 +30,8 @@ const TabsLayout = () => {
         tabBarInactiveTintColor:"#CDCDE0",
         tabBarStyle:{
           backgroundColor:"#000000"
-        }
+        },
+        headerShown:false
       }}>
         <Tabs.Screen
           name="home"
