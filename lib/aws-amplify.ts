@@ -1,4 +1,16 @@
-import { AuthError,signIn, type SignInInput, fetchAuthSession ,getCurrentUser,signOut} from 'aws-amplify/auth';
+import { AuthError,signIn, type SignInInput, fetchAuthSession ,getCurrentUser,signOut,AuthSession} from 'aws-amplify/auth';
+
+export async function currentSess(){
+  try{
+    const response =await fetchAuthSession();
+
+    console.log(response)
+  }
+  catch(error){
+    console.log(error)
+  }
+}
+
 
 export  async function currentSession() {
   try {

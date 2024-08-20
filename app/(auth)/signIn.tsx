@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import TextField from '../../components/textField';
 import Button from '../../components/customButton';
 import { Link, useRouter } from 'expo-router';
-import { handleSignOut,handleSignIn } from '../../lib/aws-amplify';
+import { handleSignIn,currentSess,currentSession } from '../../lib/aws-amplify';
 import { useGlobalContext } from '../../context/GlobalProvider';
 
 
@@ -30,6 +30,8 @@ const signin = () => {
    if(response)
       {
         if(response.isSignedIn === true)
+          currentSess()
+          currentSession()
           router.replace('/home')
       }
       else
@@ -49,16 +51,6 @@ const signin = () => {
    catch(error){
     console.log(error)
    }
-  }
-  const signOut=()=>{
-    try{
-      handleSignOut()
-      router.replace('/signin')
-    }
-    catch(error){
-      console.log(error)
-    }
-  
   }
   return (
     <SafeAreaView className='h-full items-center bg-primary'>

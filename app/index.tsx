@@ -12,7 +12,7 @@ Amplify.configure(awsconfig);
 export default function app(){
   const icon=require('../assets/images/splash_screen.jpg')
   const {isLoading,isLoggedIn}=useGlobalContext();
-  // console.log("Loading:",isLoading,"Loggedin:",isLoggedIn)
+ 
   if(!isLoading && isLoggedIn) return <Redirect href="/home" />
   return(
   <SafeAreaView className="flex-1 items-center justify-start bg-black">
