@@ -1,10 +1,10 @@
 import { View, Text, Alert } from 'react-native';
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextField from '../../components/textField';
 import Button from '../../components/customButton';
 import { Link, useRouter } from 'expo-router';
-import { handleSignIn,currentSess,currentSession } from '../../lib/aws-amplify';
+import { handleSignIn,currentSess } from '../../lib/aws-amplify';
 import { useGlobalContext } from '../../context/GlobalProvider';
 
 
@@ -30,9 +30,10 @@ const signin = () => {
    if(response)
       {
         if(response.isSignedIn === true)
-          currentSess()
-          currentSession()
-          router.replace('/home')
+          {
+            const session= await currentSess()
+            router.replace('/home')
+          }
       }
       else
       {

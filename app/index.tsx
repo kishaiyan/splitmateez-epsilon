@@ -26,7 +26,7 @@ export default function app(){
         source={icon} 
         className="w-screen h-screen"
       />
-      <View className="absolute bg-black/80  items-center justify-center w-full h-[35%] bottom-[10%]" style={{borderTopLeftRadius:15,borderTopRightRadius:15}} >
+      <View className="absolute bg-black/80  items-center justify-center w-full h-[35%] bottom-[10%] " style={{borderTopLeftRadius:15,borderTopRightRadius:15,}} >
         <Button 
         title="Get Started !"
         handlePress={()=>router.push('/signup')}

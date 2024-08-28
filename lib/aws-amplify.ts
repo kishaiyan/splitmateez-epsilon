@@ -2,13 +2,13 @@ import { AuthError,signIn, type SignInInput, fetchAuthSession ,getCurrentUser,si
 
 export async function currentSess(){
   try{
-    const response =await fetchAuthSession();
-
-    console.log(response)
+    const {credentials} =await fetchAuthSession();
+    return credentials.sessionToken;
   }
   catch(error){
-    console.log(error)
+    return(error)
   }
+  
 }
 
 

@@ -2,7 +2,7 @@ import { View, Text, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../components/customButton';
-import { useRouter,useLocalSearchParams, router } from 'expo-router';
+import { useLocalSearchParams, router } from 'expo-router';
 import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
 
 
@@ -10,12 +10,16 @@ import { confirmSignUp, type ConfirmSignUpInput } from 'aws-amplify/auth';
 const ConfirmEmail = () => {
   
   const { email,username } = useLocalSearchParams();
+
   const [code, setCode] = useState('');
 
   const handleSignUpConfirmation = async ({ username, confirmationCode }: ConfirmSignUpInput) => {
     try {
-      const { isSignUpComplete, nextStep } = await confirmSignUp({ username, confirmationCode });
-      router.push("/signin")
+      const { isSignUpComplete } = await confirmSignUp({ username, confirmationCode });
+      if(isSignUpComplete)
+      {
+        router.push("/signin")
+      }
     } catch (error) {
       console.log('Error confirming sign up:', error);
     }
@@ -23,12 +27,14 @@ const ConfirmEmail = () => {
 
   const onSubmit = () => {
     
-    handleSignUpConfirmation({ username:username, confirmationCode: code });
+    handleSignUpConfirmation({ 
+      username: username,
+      confirmationCode: code });
   };
 
   return (
     <SafeAreaView>
-      <View className='h-full bg-primary w-full items-center'>
+      <View className='h-full bg-primary w-full items-center px-3'>
         <View className='border w-full h-[5%] my-5'>
           <Text className='text-white text-center text-2xl font-sans'>Confirm your Email</Text>
         </View>
@@ -43,6 +49,7 @@ const ConfirmEmail = () => {
             onChangeText={(text) => setCode(text)}
             className='border items-center p-5 text-white border-gray-400 w-full h-[100px] text-3xl text-center'
             placeholder='******'
+            placeholderTextColor="#dddddd35"
             style={{ letterSpacing: 26, width: 300 }}
             maxLength={6}
           />

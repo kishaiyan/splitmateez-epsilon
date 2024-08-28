@@ -5,7 +5,7 @@ import { currentSess,currentSession } from '../../lib/aws-amplify';
 
 const Home = () => {
   useEffect(()=>{
-    currentSess()
+    //  
     
   },[])
   return (
@@ -15,9 +15,11 @@ const Home = () => {
       keyExtractor={(item) => item.id}
       renderItem={({item}) => (
         <View>
-          <Text className='text-white text-2xl'>
-            {item.id}
-          </Text>
+          <View className='w-full h-[50%] bg-orange-300 items-center'>
+            <Text className='text-white text-2xl '>
+              {item.id}
+            </Text>
+          </View>
         </View>
        )}
        ListHeaderComponent={()=>(

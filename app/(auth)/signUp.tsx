@@ -5,7 +5,7 @@ import { signUp } from 'aws-amplify/auth';
 import Button from '../../components/customButton';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Link, useRouter } from 'expo-router';
-
+import Toast from 'react-native-toast-message';
 type signupParameters = {
   firstname: string,
   lastname: string,
@@ -38,7 +38,13 @@ async function handlesignUp(
         autoSignIn: { enabled: true },
       },
     });
-
+    Toast.show({
+      type:"success",
+      text1:"Signed Up Successfully",
+      text2:"Confirm Email to continue",
+      autoHide:true,
+      visibilityTime: 2000,
+    })
     if (!isSignUpComplete && nextStep.signUpStep === "CONFIRM_SIGN_UP") {
        router.push(`/confirmEmail?email=${encodeURIComponent(email)}&username=${encodeURIComponent(userId)}`);
     }
