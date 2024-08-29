@@ -1,4 +1,4 @@
-import { View, Text, ScrollView,  } from 'react-native';
+import { View, Text, ScrollView,Image  } from 'react-native';
 import React, { useState } from 'react';
 import TextField from '../../components/textField';
 import { signUp } from 'aws-amplify/auth';
@@ -11,7 +11,7 @@ type signupParameters = {
   lastname: string,
   email: string,
   phone: string,
-  address: string,
+  address:string,
   password: string,
 };
 
@@ -20,7 +20,7 @@ function getNumber(phone: string) {
 }
 
 async function handlesignUp(
-  { firstname, lastname, email, phone, address, password }: signupParameters,
+  { firstname, lastname, email, phone,address, password }: signupParameters,
   router: any // Use appropriate type for navigation
 ) {
   try {
@@ -54,12 +54,12 @@ async function handlesignUp(
 }
 
 const Signup = () => {
+  const logo=require("../../assets/images/logo.png")
   const router = useRouter();
   const [form, setForm] = useState({
     email: '',
     firstname: '',
     lastname: '',
-    address: '',
     password: '',
     phno: '',
   });
@@ -68,7 +68,6 @@ const Signup = () => {
     email: '',
     firstname: '',
     lastname: '',
-    address: '',
     password: '',
     phno: '',
   });
@@ -79,7 +78,6 @@ const Signup = () => {
       email: '',
       firstname: '',
       lastname: '',
-      address: '',
       password: '',
       phno: '',
     };
@@ -96,11 +94,6 @@ const Signup = () => {
 
     if (!form.lastname) {
       newErrors.lastname = 'Last name is required';
-      valid = false;
-    }
-
-    if (!form.address) {
-      newErrors.address = 'Address is required';
       valid = false;
     }
 
@@ -128,19 +121,24 @@ const Signup = () => {
         lastname: form.lastname,
         email: form.email,
         phone: form.phno,
-        address: form.address,
+        address:"something",
         password: form.password,
       }, router);
     }
   };
 
   return (
-    <SafeAreaView className='h-full justify-evenly items-center bg-primary'>
-      <View className='w-full items-center h-[10%]'>
+    <SafeAreaView className='flex-1 bg-primary '>
+      <View className='flex-row h-[10%] items-center justify-between px-5 pb-3'>
         <Text className='text-white text-2xl'>SIGN UP</Text>
+        <Image 
+        source={logo}
+        className='w-10 h-10'
+        resizeMode='contain'
+        />
       </View>
       
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+        <ScrollView className=""  showsVerticalScrollIndicator={false}>
           <View className="flex-1">
             <View className="flex-1 px-4 my-6 items-center justify-between">
               <View className="w-full items-center">
@@ -167,14 +165,6 @@ const Signup = () => {
                   placeholder="Doe"
                   keyboardtype="default"
                   error={errors.lastname}
-                />
-                <TextField
-                  label="ADDRESS"
-                  value={form.address}
-                  handlechange={(e) => setForm({ ...form, address: e })}
-                  keyboardtype="default"
-                  placeholder="Full address"
-                  error={errors.address}
                 />
                 <TextField
                   label="PHONE NUMBER"

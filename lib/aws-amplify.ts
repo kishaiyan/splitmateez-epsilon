@@ -43,7 +43,8 @@ export async function handleSignIn({ username, password }: SignInInput) {
     
     return response
   } catch (error) {
-    error instanceof AuthError && console.log(error.name, error.message, error.recoverySuggestion)
+   
+    error instanceof AuthError && console.log(error.underlyingError,error.name, error.message, error.recoverySuggestion)
   }
 }
 

@@ -2,7 +2,7 @@ import { View, Text, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpa
 import { MaterialIcons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 
-const TextField = ({ label,placeholder,value,handlechange,keyboardtype,error }) => {
+const TextField = ({ label,placeholder,value,handlechange,keyboardtype,error, }) => {
   
   const [showpassword,setShowPassword]=useState(false);
 
@@ -14,7 +14,7 @@ const TextField = ({ label,placeholder,value,handlechange,keyboardtype,error }) 
        
         
         <TextInput
-          className={`text-white ${label=== "PASSWORD" ? 'w-[85%]':'w-full' }`}
+          className={`text-white ${label=== "PASSWORD" ? 'w-[85%]':'w-full'}` }
           onChangeText={handlechange}
           value={value}
           placeholder={placeholder}

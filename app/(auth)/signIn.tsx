@@ -1,4 +1,4 @@
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert,Image } from 'react-native';
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextField from '../../components/textField';
@@ -10,6 +10,7 @@ import { useGlobalContext } from '../../context/GlobalProvider';
 
 
 const signin = () => {
+  const logo=require("../../assets/images/logo.png")
   const {isLoading,setIsLoading}=useGlobalContext()
   const router=useRouter();
   const [signForm,setSignForm]=useState({
@@ -32,7 +33,8 @@ const signin = () => {
         if(response.isSignedIn === true)
           {
             const session= await currentSess()
-            router.replace('/home')
+            console.log("Logged in Successfully: ",session);
+            router.replace('/home');
           }
       }
       else
@@ -50,12 +52,16 @@ const signin = () => {
    
 }
    catch(error){
-    console.log(error)
+    console.log("error signing in check amplify studio");
+    console.log(error) 
    }
   }
   return (
     <SafeAreaView className='h-full items-center bg-primary'>
-      <Text className='text-secondary text-2xl mb-[50]'>LOGIN TO SMEZ</Text>
+      <View className='flex-row px-5'>
+        <Text className='text-secondary text-2xl mb-[50] flex-1'>SIGN IN</Text>
+        <Image source={logo} className='w-10 h-10' resizeMode='contain'/>
+      </View>
         <View className='h-full w-full items-center justify-start'>
           <TextField label="EMAIL" value={signForm.email} handlechange={(e)=>setSignForm({...signForm,email:e})}placeholder="john.doe@something.com" keyboardtype="email-address" error=""/>
 
