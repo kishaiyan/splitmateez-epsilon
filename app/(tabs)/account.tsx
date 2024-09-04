@@ -10,7 +10,7 @@ const Account = () => {
   const signOut=()=>{
     try{
       handleSignOut()
-      router.replace('/signin')
+      router.replace('/signIn')
     }
     catch(error){
       console.log(error)

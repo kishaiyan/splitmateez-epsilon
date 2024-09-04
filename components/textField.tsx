@@ -9,21 +9,21 @@ const TextField = ({ label,placeholder,value,handlechange,keyboardtype,error, })
   return (
     <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
       <View className='space-y-2 mb-3'>
-      {label && <Text className='text-white mb-2'>{label}</Text>}
-      <View className={`border flex-row w-[300px] h-[50px] px-2 bg-fieldfill rounded-lg justify-between focus:border-secondary `}>
+        {label && <Text className='text-white mb-2'>{label}</Text>}
+      <View className={`border border-fieldfill flex-row w-[300px] h-[50px] px-2 bg-fieldfill rounded-lg justify-between focus:border-secondary `}>
        
         
         <TextInput
-          className={`text-white ${label=== "PASSWORD" ? 'w-[85%]':'w-full'}` }
+          className={`text-white ${label=== "Password" ? 'w-[85%]':'w-full'}` }
           onChangeText={handlechange}
           value={value}
           placeholder={placeholder}
           placeholderTextColor="gray"
-          secureTextEntry={label==='PASSWORD' && !showpassword}
+          secureTextEntry={label==='Password' && !showpassword}
           keyboardType={keyboardtype}
         />
         {
-          label === 'PASSWORD' && (
+          label === 'Password' && (
             <TouchableOpacity className="py-3" onPress={()=>{setShowPassword(!showpassword)}}>
               <MaterialIcons name="visibility" color="gray" size={24}/>
             </TouchableOpacity>

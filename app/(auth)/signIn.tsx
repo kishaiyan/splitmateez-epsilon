@@ -4,7 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import TextField from '../../components/textField';
 import Button from '../../components/customButton';
 import { Link, useRouter } from 'expo-router';
-import { handleSignIn,currentSess } from '../../lib/aws-amplify';
+import { handleSignIn,currentSess, handleSignOut } from '../../lib/aws-amplify';
+import AppBar from '../../components/appBar';
 import { useGlobalContext } from '../../context/GlobalProvider';
 
 
@@ -21,21 +22,18 @@ const signin = () => {
   const onsubmit=async()=>{
   try{ 
     setIsLoading(true)
-    const response = await handleSignIn(
-    {
-      username:signForm.email,
-      password:signForm.password,
-    }
-   )
-   setIsLoading(false)
-   if(response)
+     const response=await handleSignIn(
       {
-        if(response.isSignedIn === true)
-          {
-            const session= await currentSess()
-            console.log("Logged in Successfully: ",session);
-            router.replace('/home');
-          }
+        username:signForm.email,
+        password:signForm.password,
+      }
+      )
+      console.log(response)
+   setIsLoading(false)
+    if(response && response.isSignedIn)
+      {
+        console.log("Logged in Successfully: ",response.isSignedIn);
+        router.replace('/home');      
       }
       else
       {
@@ -45,39 +43,43 @@ const signin = () => {
           },
           {
             text:"Sign Up",
-            onPress:()=>{router.replace('/signup')}
+            onPress:()=>{router.push('/signUp')}
           }
       ])
   }
    
 }
    catch(error){
-    console.log("error signing in check amplify studio");
     console.log(error) 
    }
   }
+  
+
   return (
-    <SafeAreaView className='h-full items-center bg-primary'>
-      <View className='flex-row px-5'>
-        <Text className='text-secondary text-2xl mb-[50] flex-1'>SIGN IN</Text>
-        <Image source={logo} className='w-10 h-10' resizeMode='contain'/>
-      </View>
-        <View className='h-full w-full items-center justify-start'>
-          <TextField label="EMAIL" value={signForm.email} handlechange={(e)=>setSignForm({...signForm,email:e})}placeholder="john.doe@something.com" keyboardtype="email-address" error=""/>
-
-          <TextField label="PASSWORD" value={signForm.password} handlechange={(e)=>setSignForm({...signForm,password:e})} keyboardtype="default" placeholder="Password" error=""/>
-
-          <Button title='Sign In' containerStyle='w-[60%] min-h-[45px] mt-6 ' isLoading={isLoading} onPress={onsubmit}/>
-          
-          
-
-          <View className='mt-5 h-[5%] items-center justify-center flex-row'>
-            <Text className='text-white mr-2'>Don't have an account</Text>
-            <Link href="/signup" className='text-secondary text-md'>Sign Up</Link>
+    <SafeAreaView className='flex-1 items-center bg-primary px-5'>
+      {/* // appBar */}
+      <AppBar/>
+      {/* // Rest of the page */}
+        <View className='flex-1'>
+          <View className='flex items-start mb-4'>
+            <Text className="text-secondary text-xl">SIGN IN</Text>
           </View>
+          <View className='items-center justify-start px-4'>
+                <TextField label="Email" value={signForm.email} handlechange={(e)=>setSignForm({...signForm,email:e})}placeholder="john.doe@something.com" keyboardtype="email-address" error=""/>
 
+                <TextField label="Password" value={signForm.password} handlechange={(e)=>setSignForm({...signForm,password:e})} keyboardtype="default" placeholder="Password" error=""/>
+
+                <Button title='Sign In' containerStyle='mt-5 mb-3 px-10 py-3' isLoading={false} onPress={onsubmit}/>
+                <Link href={'/forgotPass'} className='text-gray-400 text-xs'>Forgot your password?</Link>
+            </View>
+
+            <View className='flex items-center mt-10'>
+              <Text className='text-white text-md'>Don't have an account?</Text>
+              <Link href={'/signUp'} className='text-secondary text-xl'> Sign Up</Link>
         </View>
-      
+            
+        </View>
+        
     </SafeAreaView>
     
   )

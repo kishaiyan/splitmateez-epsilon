@@ -1,39 +1,43 @@
-import { View, Text, FlatList } from 'react-native'
-import React, { useEffect } from 'react'
+import { FlatList,View,Text} from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { currentSess,currentSession } from '../../lib/aws-amplify';
+import AppBar from '../../components/appBar'
+import HomeTile from '../../components/homeTile'
+import { AntDesign, MaterialIcons } from '@expo/vector-icons'
+
 
 const Home = () => {
-  useEffect(()=>{
-    //  
-    
-  },[])
+  const [people,setPeople]=useState([
+    {name:"shaun",key:'1'},
+    {name:"yoshi",key:'2'},
+    {name:"mario",key:'3'},
+    {name:"luigi",key:'4'},
+    {name:"toad",key:'5'},
+    {name:"peach",key:'6'},
+  ])
+  
   return (
-    <SafeAreaView className='h-full bg-primary px-4'>
-      <FlatList 
-      data={[{id:"1"},{id:"2"},{id:"3"},{id:"4"}]}
-      keyExtractor={(item) => item.id}
-      renderItem={({item}) => (
-        <View>
-          <View className='w-full h-[50%] bg-orange-300 items-center'>
-            <Text className='text-white text-2xl '>
-              {item.id}
-            </Text>
-          </View>
-        </View>
-       )}
-       ListHeaderComponent={()=>(
-        <View className='my-6 px-4 space-y-6'>
-           <View className='justify-between items-start flex=row mb-6'>
-              <View>
-                <Text className='font-medium text-gray-400 text-lg'>Welcome Back</Text>
-                <Text className='font-semibold text-secondary text-4xl'>Kishaiyan</Text>
-              </View>
-           </View>
-    
-
-        </View>
-       )}
+    <SafeAreaView className='flex-1 bg-primary  px-4'>
+      <AppBar />
+      
+      <View className='h-[10%]'>
+        <Text className='text-white text-xl'>Welcome back</Text>
+        <Text className='text-secondary text-2xl font-extrabold'>Welcome</Text>
+      </View>
+      <View className='flex-row items-center justify-center gap-2'>
+        <MaterialIcons name='swipe' color='#ffffff' size={20}/>
+        <Text className='text-gray-200'>Swipe for more properties</Text>
+      </View>
+      <FlatList  
+        data={people}
+        renderItem={({item})=>(
+          
+            <HomeTile name={item.name}/>
+         
+        )}
+        horizontal
+       
+        
       />
     </SafeAreaView>
   )

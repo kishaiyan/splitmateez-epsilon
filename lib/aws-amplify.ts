@@ -1,9 +1,11 @@
-import { AuthError,signIn, type SignInInput, fetchAuthSession ,getCurrentUser,signOut,AuthSession} from 'aws-amplify/auth';
+import { signIn,signOut, getCurrentUser, AuthError, fetchAuthSession  } from "aws-amplify/auth";
 
 export async function currentSess(){
   try{
-    const {credentials} =await fetchAuthSession();
-    return credentials.sessionToken;
+    const {accessToken,idToken} =(await fetchAuthSession()).tokens??{};
+    console.log("Access Token:",accessToken);
+    console.log("Id Token:",idToken);
+    // return credentials.sessionToken;
   }
   catch(error){
     return(error)
@@ -11,18 +13,9 @@ export async function currentSess(){
   
 }
 
-
-export  async function currentSession() {
-  try {
-    const { accessToken, idToken } = (await fetchAuthSession()).tokens ?? {};
-    console.log(accessToken,idToken)
-  } catch (err) {
-    console.log(err);
-  }
-}
 export  async function handleSignOut() {
   try {
-    const response=await signOut();
+    await signOut();
     console.log("Signed Out")
   } catch (error) {
     console.log('error signing out: ', error);
@@ -30,21 +23,21 @@ export  async function handleSignOut() {
 }
 export  async function getcurrentUser(){
   try{
-    const { userId } = await getCurrentUser();
-    return userId;
+    const response = await getCurrentUser();
+    console.log(response)
+    return response.userId;
   }
   catch(error){
-    console.log(error);
+    console.log("Current User Error",error);
   }
 }
-export async function handleSignIn({ username, password }: SignInInput) {
+export async function handleSignIn({ username, password }) {
   try {
-    const response = await signIn({ username, password });
+    const response=await signIn({ username, password });
     
-    return response
+    return response;
   } catch (error) {
-   
-    error instanceof AuthError && console.log(error.underlyingError,error.name, error.message, error.recoverySuggestion)
+    console.log(error,error.underlyingError)
   }
 }
 

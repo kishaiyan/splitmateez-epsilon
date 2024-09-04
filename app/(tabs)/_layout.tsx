@@ -1,7 +1,8 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import TabBar from '../../components/tabBar';
 
 
 type TabBarProps = {
@@ -11,29 +12,15 @@ type TabBarProps = {
   focused: boolean;
 }
 
-const TabIcon: React.FC<TabBarProps> = ({ Icon, color, name, focused }) => {
-  return (
-    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-      <MaterialIcons name={Icon} color={color} size={24} />
-      <Text style={{ fontWeight: focused ? 'bold' : 'normal', fontSize: 12 ,color:color}}>{name}</Text>
-    </View>
-  );
-}
+
 
 const TabsLayout = () => {
   return (
     <>
       <Tabs
+      tabBar={(props)=><TabBar {...props}/>}
       screenOptions={{
-        tabBarShowLabel: false,
-        tabBarActiveTintColor:"#BD6A33",
-        tabBarInactiveTintColor:"#CDCDE0",
-      
-        tabBarStyle:{
-          backgroundColor:"#000000",
-          borderColor:'#BD6A33',
-          shadowColor:'#BD6A33',
-        },
+        
         headerShown:false
 
       }}>
@@ -42,14 +29,7 @@ const TabsLayout = () => {
           options={{
             title: 'Home',
             
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                Icon="home"// Use a vector icon component from react-native-vector-icons
-                name="Home"
-                color={color}
-                focused={focused}
-              />
-            )
+            
           }}
         />
         <Tabs.Screen
@@ -57,14 +37,7 @@ const TabsLayout = () => {
           options={{
             title: 'Add',
            
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                Icon="add"// Use a vector icon component from react-native-vector-icons
-                name="Add"
-                color={color}
-                focused={focused}
-              />
-            )
+           
           }}
         />
         <Tabs.Screen
@@ -72,14 +45,8 @@ const TabsLayout = () => {
           options={{
             title: 'Account',
             
-            tabBarIcon: ({ color, focused }) => (
-              <TabIcon
-                Icon="account-box"// Use a vector icon component from react-native-vector-icons
-                name="Account"
-                color={color}
-                focused={focused}
-              />
-            )
+            
+            
           }}
         />
       </Tabs>
