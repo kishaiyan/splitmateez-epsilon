@@ -57,7 +57,8 @@ const ConfirmEmail = () => {
             keyboardType='number-pad'
             value={code}
             onChangeText={(text) => setCode(text)}
-            className='border text-gray-200 border-gray-400 h-[40%] text-3xl text-center '
+            className='border text-gray-200 border-gray-400 h-[40%] text-3xl'
+            textAlign='center'
             placeholder='******'
             placeholderTextColor="#dddddd35"
             style={{ letterSpacing: 26, width: 300 }}

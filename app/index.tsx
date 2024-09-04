@@ -17,7 +17,7 @@ export default function app(){
   const {isLoading,isLoggedIn}=useGlobalContext();
  
   if(!isLoading && isLoggedIn) {return <Redirect href="/home" />}
-  else{return <Redirect href="/forgotPass" />}
+  // else{return <Redirect href="/forgotPass" />}
   
   return(
   

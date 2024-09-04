@@ -1,4 +1,4 @@
-import { signIn,signOut, getCurrentUser, AuthError, fetchAuthSession  } from "aws-amplify/auth";
+import { signIn,signOut, getCurrentUser, fetchAuthSession,resetPassword,confirmResetPassword  } from "aws-amplify/auth";
 
 export async function currentSess(){
   try{
@@ -41,3 +41,19 @@ export async function handleSignIn({ username, password }) {
   }
 }
 
+export async function handleResetPassword({ username}){
+  try {
+    const output=await resetPassword({username})
+    return output;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function handleCRP({username,confirmationCode,newPassword}){
+  try {
+    await confirmResetPassword({username,confirmationCode,newPassword})
+  } catch (error) {
+    
+  }
+}
