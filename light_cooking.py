@@ -122,7 +122,7 @@ def detect_cooking_activity(bucket, key, tenant_id):
         
         # Check for 'Cooking' label
         for label in response['Labels']:
-            if label['Name'].lower() == 'cooking':
+            if label['Name'].lower() == 'cooking pan':
                 log_activity('COOKING', tenant_id)
                 break
         else:
